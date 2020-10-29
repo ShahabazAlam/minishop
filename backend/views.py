@@ -163,7 +163,7 @@ class QuantityUpdateView(APIView):
 
 
 class ProductDetail(RetrieveAPIView):
-    permission_classes = [IsAuthenticated, ]
+    permission_classes = [AllowAny, ]
 
     def get(self, request, id, format=None):
         queryset = Item.objects.get(id=id)

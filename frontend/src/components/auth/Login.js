@@ -16,7 +16,7 @@ class LoginForm extends Component {
 
     static propType = {
         login: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool,
+        auth: PropTypes.object,
         errMsg: PropTypes.object,
 
     }
@@ -38,6 +38,7 @@ class LoginForm extends Component {
 
         const { username, password } = this.state;
         const { isAuthenticated, isLoading } = this.props.auth;
+        console.log(this.props)
         if (isAuthenticated) {
             return <Redirect to='/home/' />;
         }

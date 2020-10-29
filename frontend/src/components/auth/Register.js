@@ -18,7 +18,7 @@ class Register extends Component {
 
     static propType = {
         signup: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool,
+        auth: PropTypes.object,
         errMsg: PropTypes.object,
     }
     componentDidUpdate(prevProps) {
@@ -127,7 +127,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
+    auth: state.auth,
     errMsg: state.auth.errorMessage,
 });
 
