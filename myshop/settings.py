@@ -28,7 +28,7 @@ SECRET_KEY = 'q)-o12u2hpq5qe338e_c+=w60!)cugt6_5ypf7_)-*gj%+nz_#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://myminishop.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
