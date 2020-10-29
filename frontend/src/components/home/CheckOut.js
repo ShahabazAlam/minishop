@@ -392,6 +392,7 @@ class WrappedForm extends Component {
         cartsdata: PropTypes.object.isRequired,
         coupon: PropTypes.object.isRequired,
 
+
     }
 
     componentDidMount() {
@@ -428,7 +429,7 @@ class WrappedForm extends Component {
                             <Grid.Column width={7}>
                                 <Header>Payment</Header>
                                 <Divider />
-                                <StripeProvider apiKey='Your Api Key'>
+                                <StripeProvider apiKey='pk_test_51Hf6gEBcz79DwPzsdDL2NJUrTlaEZlyIErSoOHjfzKt6PXOxvk2lZWqOYgg1gfXrPE2KlXFMWlZIhnZCra2H4Y4U00R7LdyE1F'>
                                     <Elements>
                                         <InjectedCheckoutForm />
                                     </Elements>
