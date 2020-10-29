@@ -22,3 +22,4 @@ Strip==0.0.1.dev14
 stripe==2.55.0
 urllib3==1.25.11
 whitenoise==5.2.0
+psycopg2 == 2.8.6
