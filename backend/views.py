@@ -75,6 +75,8 @@ class FetchCartView(ListAPIView):
 
 
 class AddToCartView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request, *args, **kwargs):
         slug = request.data.get('slug', None)
         p_id = request.data.get('p_id', None)
@@ -125,6 +127,8 @@ class AddToCartView(APIView):
 
 
 class DeleteCartView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
     def get_object(self, pk):
         try:
             return OrderItem.objects.get(pk=pk)
@@ -262,6 +266,8 @@ class CouponView(APIView):
 
 
 class MakePayment(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
         userprofile, created = UserProfile.objects.get_or_create(
@@ -330,29 +336,23 @@ class MakePayment(APIView):
             return Response({"message": f"{err.get('message')}"}, status=HTTP_400_BAD_REQUEST)
 
         except stripe.error.RateLimitError as e:
-            print(e)
             # Too many requests made to the API too quickly
-            messages.warning(self.request, "Rate limit error")
             return Response({"message": "Rate limit error"}, status=HTTP_400_BAD_REQUEST)
 
         except stripe.error.InvalidRequestError as e:
-            print(e)
             # Invalid parameters were supplied to Stripe's API
             return Response({"message": "Invalid parameters"}, status=HTTP_400_BAD_REQUEST)
 
         except stripe.error.AuthenticationError as e:
-            print(e)
             # Authentication with Stripe's API failed
             # (maybe you changed API keys recently)
             return Response({"message": "Not authenticated"}, status=HTTP_400_BAD_REQUEST)
 
         except stripe.error.APIConnectionError as e:
-            print(e)
             # Network communication with Stripe failed
             return Response({"message": "Network error"}, status=HTTP_400_BAD_REQUEST)
 
         except stripe.error.StripeError as e:
-            print(e)
             # Display a very generic error to the user, and maybe send
             # yourself an email
             return Response({"message": "Something went wrong. You were not charged. Please try again."}, status=HTTP_400_BAD_REQUEST)
@@ -373,6 +373,8 @@ class FetchPaymentsView(ListAPIView):
 
 
 class DeletePaymentView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
     def get_object(self, pk):
         try:
             return Payment.objects.get(pk=pk)

@@ -26,21 +26,32 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'q)-o12u2hpq5qe338e_c+=w60!)cugt6_5ypf7_)-*gj%+nz_#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+]
+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'frontend',
     'backend',
     'rest_framework',
     'django_countries',
@@ -49,6 +60,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
